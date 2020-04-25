@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace LeetCode.aws.ArraysAndStrings
 {
+    //https://leetcode.com/explore/interview/card/amazon/76/array-and-strings/2972/
     public partial class Solution
     {
         public string OnesConvert(int num)
@@ -12,23 +11,23 @@ namespace LeetCode.aws.ArraysAndStrings
             switch(num)
             {
                 case 1:
-                    return "one";
+                    return "One";
                 case 2:
-                    return "two";
+                    return "Two";
                 case 3:
-                    return "three";
+                    return "Three";
                 case 4:
-                    return "four";
+                    return "Four";
                 case 5:
-                    return "five";
+                    return "Five";
                 case 6:
-                    return "six";
+                    return "Six";
                 case 7:
-                    return "seven";
+                    return "Seven";
                 case 8:
-                    return "eight";
+                    return "Eight";
                 case 9:
-                    return "nine";
+                    return "Nine";
                 default:
                     return "";
             }
@@ -37,24 +36,26 @@ namespace LeetCode.aws.ArraysAndStrings
         {
             switch (num)
             {
+                case 0:
+                    return "Ten";
                 case 1:
-                    return "eleven";
+                    return "Eleven";
                 case 2:
-                    return "twelve";
+                    return "Twelve";
                 case 3:
-                    return "thirteen";
+                    return "Thirteen";
                 case 4:
-                    return "fourteen";
+                    return "Fourteen";
                 case 5:
-                    return "fifteen";
+                    return "Fifteen";
                 case 6:
-                    return "sixteen";
+                    return "Sixteen";
                 case 7:
-                    return "seventeen";
+                    return "Seventeen";
                 case 8:
-                    return "eighteen";
+                    return "Eighteen";
                 case 9:
-                    return "nineteen";
+                    return "Nineteen";
                 default:
                     return "";
             }
@@ -64,23 +65,23 @@ namespace LeetCode.aws.ArraysAndStrings
             switch(num)
             {
                 case 1:
-                    return "ten";
+                    return "Ten";
                 case 2:
-                    return "twenty";
+                    return "Twenty";
                 case 3:
-                    return "thirty";
+                    return "Thirty";
                 case 4:
-                    return "fourty";
+                    return "Forty";
                 case 5:
-                    return "fifty";
+                    return "Fifty";
                 case 6:
-                    return "sixty";
+                    return "Sixty";
                 case 7:
-                    return "sevenity";
+                    return "Seventy";
                 case 8:
-                    return "eighty";
+                    return "Eighty";
                 case 9:
-                    return "ninety";
+                    return "Ninety";
                 default:
                     return "";
             }
@@ -89,63 +90,64 @@ namespace LeetCode.aws.ArraysAndStrings
         {
             switch (num)
             {
-                case 1:
-                    return "hundred";
                 case 2:
-                    return "thousand";
+                    return "Thousand";
                 case 3:
-                    return "million";
+                    return "Million";
                 case 4:
-                    return "billion";
+                    return "Billion";
                 default:
                     return "";
             }
         }
         public string NumberToWords(int num)
         {
-            string ConvertChunk(int chunk, int chunkCounter)
+            if (num == 0) return "Zero";
+            void ConvertChunk(int chunk, int chunkCounter, Stack<string> strNum)
             {
                 var ones = chunk % 10;
                 var tens = chunk/10 % 10;
                 var thousands = chunk/100 % 10;
 
-                var strNum = new List<string>();
-                
-                strNum.Add(OnesConvert(ones));
-                
-                if (thousands == 0)
-                    strNum.Add(Hundreds(chunk));
-                
+                if (chunkCounter > 1 && (chunk != 0))
+                    strNum.Push(Hundreds(chunkCounter));
                 if (tens == 1)
-                    strNum.Add(TenthsConvert(tens));
+                {
+                    strNum.Push(TenthsConvert(ones));
+                }
                 else
-                    strNum.Add(TensConvert(tens));
+                {
+                    if (ones != 0)
+                        strNum.Push(OnesConvert(ones));
+                    if (tens != 0)
+                        strNum.Push(TensConvert(tens));
+                }
 
-                if (thousands == 0) return strNum.ToString();
-                
-                strNum.Add(Hundreds(chunkCounter));
-                strNum.Add(OnesConvert(thousands));
-
-                return String.Join(" ", strNum);
+                if (thousands == 0)
+                    return;
+                    
+                strNum.Push("Hundred");
+                if (thousands >= 1)
+                    strNum.Push(OnesConvert(thousands));
             }
 
             var chunkCounter = 1;
-            var stringNum = new StringBuilder();
+            var stringNum = new Stack<string>();
             while (num != 0)
             {
                 var chunk = num % 1000;
-                var numWord = ConvertChunk(chunk, chunkCounter);
-                stringNum.Append(stringNum);
-                num %= 1000;
+                ConvertChunk(chunk, chunkCounter, stringNum);
+                chunkCounter++;
+                num /= 1000;
             }
 
-            return stringNum.ToString();
+            return string.Join(" ", stringNum);
         }
 
         [Fact]
         public void TestNumberToWords()
         {
-            Assert.Equal("Twelve Thousand Three Hundred Forty Five", NumberToWords(12345));
+            Assert.Equal("One Hundred Twenty Three", NumberToWords(123));
         }
     }
 }
