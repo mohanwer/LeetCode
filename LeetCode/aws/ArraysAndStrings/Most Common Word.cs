@@ -5,7 +5,7 @@ using Xunit;
 
 namespace LeetCode.aws.ArraysAndStrings
 {
-    public partial class Soltuion
+    public partial class Solution
     {
         //https://leetcode.com/explore/interview/card/amazon/76/array-and-strings/2973/
         public string MostCommonWord(string paragraph, string[] banned)
