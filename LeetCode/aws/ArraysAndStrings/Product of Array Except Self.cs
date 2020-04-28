@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+//https://leetcode.com/problems/product-of-array-except-self/
+
 using Xunit;
 
 namespace LeetCode.aws.ArraysAndStrings
 {
     public partial class Solution
     {
-        //https://leetcode.com/explore/interview/card/amazon/76/array-and-strings/499/
         public int[] ProductExceptSelf(int[] nums)
         {
             var result = new int[nums.Length];

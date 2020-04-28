@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/most-common-word/
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -7,7 +8,6 @@ namespace LeetCode.aws.ArraysAndStrings
 {
     public partial class Solution
     {
-        //https://leetcode.com/explore/interview/card/amazon/76/array-and-strings/2973/
         public string MostCommonWord(string paragraph, string[] banned)
         {
             var regex = new Regex("\\W");

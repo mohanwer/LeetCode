@@ -1,12 +1,13 @@
-using System;
+//https://leetcode.com/problems/trapping-rain-water/
+// Todo: return to this one.
+
 using Xunit;
 
 namespace LeetCode.aws.ArraysAndStrings
 {
     public partial class Solution
     {
-        // Todo: return to this one.
-        //https://leetcode.com/explore/interview/card/amazon/76/array-and-strings/2975/
+        
         public int Trap(int[] height)
         {
             var totalTrapped = 0;

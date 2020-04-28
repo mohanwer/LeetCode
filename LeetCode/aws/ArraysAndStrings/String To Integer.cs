@@ -1,10 +1,10 @@
+//https://leetcode.com/problems/string-to-integer-atoi/
 using Xunit;
 
 namespace LeetCode.aws.ArraysAndStrings
 {
     public partial class Solution
     {
-        //https://leetcode.com/explore/interview/card/amazon/76/array-and-strings/2962/
         public int MyAtoi(string str)
         {
             var scanContinue = true;

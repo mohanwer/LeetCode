@@ -1,5 +1,6 @@
 namespace LeetCode.aws.Trees_and_Graphs
 {
+    // https://leetcode.com/problems/symmetric-tree/
     public partial class Solution
     {
         public bool IsEqual(TreeNode left, TreeNode right)
@@ -10,7 +11,6 @@ namespace LeetCode.aws.Trees_and_Graphs
             else return IsEqual(left.right, right.left) && IsEqual(left.left, right.right);
         }
         
-        //https://leetcode.com/explore/interview/card/amazon/78/trees-and-graphs/507/
         public bool IsSymmetric(TreeNode root)
         {
             if (root == null) return true;

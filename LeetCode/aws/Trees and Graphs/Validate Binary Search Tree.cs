@@ -11,7 +11,7 @@ namespace LeetCode.aws.Trees_and_Graphs
     
     public partial class Solution
     {
-        //https://leetcode.com/explore/interview/card/amazon/78/trees-and-graphs/514/
+        // https://leetcode.com/problems/validate-binary-search-tree/
         public bool RootCheck(TreeNode root, long floor = long.MinValue, long ceiling = long.MaxValue) 
         {
             if (root == null) return true;
